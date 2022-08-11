@@ -134,12 +134,27 @@ export class AJAXForm extends Bindable
 
 		try
 		{
-			const rawResponse = await fetch(this.form.action,
-				{
-					credentials: this.form.dataset.credentialsMode ?? this.constructor.defaultCredentialsMode,
-					method: this.form.method,
-					body: formData,
-				});
+			let rawResponse;
+
+			if (this.form.method == "get")
+			{
+				const searchParams = new URLSearchParams(...formData.entries());
+
+				rawResponse = await fetch(this.form.action + "?" + searchParams.toString(),
+					{
+						credentials: this.form.dataset.credentialsMode ?? this.constructor.defaultCredentialsMode,
+						method: "GET",
+					});
+			}
+			else if (this.form.method == "post")
+			{
+				rawResponse = await fetch(this.form.action,
+					{
+						credentials: this.form.dataset.credentialsMode ?? this.constructor.defaultCredentialsMode,
+						method: "POST",
+						body: formData,
+					});
+			}
 
 			const parsedResponse = await rawResponse.json();
 
