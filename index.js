@@ -138,7 +138,7 @@ export class AJAXForm extends Bindable
 
 			if (this.form.method == "get")
 			{
-				const searchParams = new URLSearchParams(...formData.entries());
+				const searchParams = new URLSearchParams([ ...formData.entries() ]);
 
 				rawResponse = await fetch(this.form.action + "?" + searchParams.toString(),
 					{
