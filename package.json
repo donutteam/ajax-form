@@ -1,6 +1,6 @@
 {
   "name": "@donutteam/ajax-form",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "A class that simplifies AJAX form submission.",
   "main": "./index.js",
   "scripts": {
