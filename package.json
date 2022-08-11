@@ -1,0 +1,29 @@
+{
+  "name": "@donutteam/ajax-form",
+  "version": "1.0.0",
+  "description": "A class that simplifies AJAX form submission.",
+  "main": "./index.js",
+  "scripts": {
+    "lint": "eslint . -c ./.eslintrc.cjs",
+    "lint-fix": "eslint . -c ./.eslintrc.cjs --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donutteam/ajax-form.git"
+  },
+  "keywords": [
+    "ajax",
+    "form"
+  ],
+  "author": "Donut Team",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@donutteam/bindable": "^1.0.2",
+    "@donutteam/custom-api-classes": "^1.1.5",
+    "@donutteam/document-utilities": "^1.0.0"
+  },
+  "devDependencies": {
+    "@donutteam/eslint-config": "^1.0.6"
+  }
+}
