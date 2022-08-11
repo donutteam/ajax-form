@@ -83,22 +83,24 @@ export class AJAXForm extends Bindable
 	 */
 	constructor(form)
 	{
+		//
+		// Call Super Constructor
+		//
+
 		super();
+
+		//
+		// Get Elements
+		//
 
 		this.form = form;
 
 		this.messageList = this.form.querySelector(this.constructor.messageListSelector);
 
-		this.addEventListeners();
-	}
+		//
+		// Add Event Listeners
+		//
 
-	/**
-	 * Adds the necessary event listeners for the AJAX form to function.
-	 * 
-	 * @author Loren Goodwin
-	 */
-	addEventListeners()
-	{
 		this.form.addEventListener("submit", async (event) =>
 		{
 			event.preventDefault();
@@ -152,6 +154,8 @@ export class AJAXForm extends Bindable
 					code: "API_ERROR", 
 					message: "Failed to contact the API endpoint used by this form. Please try again later.",
 				});
+
+			console.error("[AJAXForm] Fetch error:", error);
 		}
 
 		console.log("[AJAXForm] Response:", response); 
