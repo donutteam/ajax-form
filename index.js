@@ -60,6 +60,22 @@ export class AJAXForm extends Bindable
 	static errorCSSClass = "error";
 
 	/**
+	 * The <form> element.
+	 * 
+	 * @type {HTMLFormElement}
+	 */
+	form;
+
+	/**
+	 * A list or list-like element within the <form>.
+	 * 
+	 * This MAY be null.
+	 * 
+	 * @type {HTMLElement}
+	 */
+	messageList;
+
+	/**
 	 * Constructs a new AJAXForm.
 	 * 
 	 * @param {HTMLFormElement} form A <form> element.
@@ -87,7 +103,9 @@ export class AJAXForm extends Bindable
 		{
 			event.preventDefault();
 
-			await this.fetch();
+			console.log("[AJAXForm] Handling form submission:", this.form);
+
+			await this.submit();
 		});
 	}
 
@@ -98,7 +116,7 @@ export class AJAXForm extends Bindable
 	 * @returns {APIResponse}
 	 * @author Loren Goodwin
 	 */
-	async fetch()
+	async submit()
 	{
 		//
 		// Create a FormData Object
@@ -136,6 +154,19 @@ export class AJAXForm extends Bindable
 				});
 		}
 
+		console.log("[AJAXForm] Response:", response); 
+
+		//
+		// Call After Function
+		//
+
+		const shouldContinue = await this.afterSubmit(response);
+
+		if (!shouldContinue)
+		{
+			return;
+		}
+
 		//
 		// Proceed to the Next Page (if the response says to)
 		//
@@ -166,5 +197,19 @@ export class AJAXForm extends Bindable
 				li.appendChild(document.createTextNode(`[${ message.code }] ${ message.message }`));
 			}
 		}
+	}
+
+	/**
+	 * A function called after submission with the response.
+	 * 
+	 * This is a stub in the base class.
+	 * 
+	 * @param {APIResponse} response
+	 * @returns {Boolean} Whether or not the regular next page and message handling should get invoked.
+	 * @author Loren Goodwin
+	 */
+	async afterSubmit(response)
+	{
+		return true;
 	}
 }
