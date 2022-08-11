@@ -71,7 +71,7 @@ export class AJAXForm extends Bindable
 
 		this.form = form;
 
-		this.messageList = this.form.querySelector(AJAXForm.messageListSelector);
+		this.messageList = this.form.querySelector(this.constructor.messageListSelector);
 
 		this.addEventListeners();
 	}
@@ -116,7 +116,7 @@ export class AJAXForm extends Bindable
 		{
 			const rawResponse = await fetch(this.form.action,
 				{
-					credentials: this.form.dataset.credentialsMode ?? AJAXForm.defaultCredentialsMode,
+					credentials: this.form.dataset.credentialsMode ?? this.constructor.defaultCredentialsMode,
 					method: this.form.method,
 					body: formData,
 				});
@@ -161,7 +161,7 @@ export class AJAXForm extends Bindable
 			{
 				const li = this.messageList.appendChild(document.createElement("li"));
 
-				li.classList.add(AJAXForm.successCodeRegExp.test(message.code) ? AJAXForm.successCSSClass : AJAXForm.errorCSSClass);
+				li.classList.add(this.constructor.successCodeRegExp.test(message.code) ? this.constructor.successCSSClass : this.constructor.errorCSSClass);
 
 				li.appendChild(document.createTextNode(`[${ message.code }] ${ message.message }`));
 			}
