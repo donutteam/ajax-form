@@ -20,7 +20,7 @@ export class AJAXForm extends Bindable
 	 * 
 	 * @type {String}
 	 */
-	static selector = "form.ajax";
+	static selector = `form.ajax, form[data-ajax="true"]`;
 
 	/**
 	 * The default credentials mode to use for underlying fetch requests.
