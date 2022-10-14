@@ -1,5 +1,5 @@
 # AJAX Forms
-A base class for instantiating classes for each instance of an element.
+A class that simplifies AJAX form submission.
 
 ## Installation
 Install the package with NPM:
